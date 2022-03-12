@@ -9,7 +9,8 @@ const symbols = "!@#$%^&*()_+=";
 function generatePassword() {
   var results = "";
   var promptpasswordsize = window.prompt(
-    "How many characters would you like your password?");
+    "How many characters would you like your password?"
+  );
   var charQty = parseInt(promptpasswordsize);
 
   if (charQty > 7 && charQty < 128) {
@@ -20,7 +21,6 @@ function generatePassword() {
 
     var i = 0;
     while (i < charQty) {
-
       if (upperCase == true) {
         results +=
           upperLetters[Math.floor(Math.random() * upperLetters.length)];
@@ -51,8 +51,7 @@ function generatePassword() {
           break;
         }
       }
-    
-  }
+    }
   } else {
     window.alert("That is an invalid entry. Select a length between 8 and 128");
     return generatePassword();
