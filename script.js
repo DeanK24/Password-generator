@@ -6,52 +6,40 @@ const lowerLetters = "abcdefghijklmnopqrstuvwxyz";
 const numbers = "0123456789";
 const symbols = "!@#$%^&*()_+=";
 
+
+
 function generatePassword() {
   var results = "";
   var promptpasswordsize = window.prompt(
-    "How many characters would you like your password?"
+    "How many characters would you like your password to be?"
   );
   var charQty = parseInt(promptpasswordsize);
 
-  if (charQty > 7 && charQty < 128) {
+  if (charQty > 7 && charQty < 129) {
     var upperCase = window.confirm("Would you like Upper case letters?");
     var lowerCase = window.confirm("Would you like Lower case letters?");
     var numeric = window.confirm("Would you like numbers?");
     var specialChar = window.confirm("Would you like symbols?");
 
-    var i = 0;
-    while (i < charQty) {
-      if (upperCase == true) {
-        results +=
-          upperLetters[Math.floor(Math.random() * upperLetters.length)];
-        i++;
-        if (i == charQty) {
-          break;
-        }
-      }
-      if (lowerCase == true) {
-        results +=
-          lowerLetters[Math.floor(Math.random() * lowerLetters.length)];
-        i++;
-        if (i == charQty) {
-          break;
-        }
-      }
-      if (numeric == true) {
-        results += numbers[Math.floor(Math.random() * numbers.length)];
-        i++;
-        if (i == charQty) {
-          break;
-        }
-      }
-      if (specialChar == true) {
-        results += symbols[Math.floor(Math.random() * symbols.length)];
-        i++;
-        if (i == charQty) {
-          break;
-        }
-      }
+    var characters = "";
+
+    if (upperCase) {
+      characters += upperLetters;
     }
+    if (lowerCase) {
+      characters += lowerLetters;
+    }
+    if (numeric) {
+      characters += numbers;
+    }
+    if (specialChar) {
+      characters += symbols;
+    }
+
+    for (let i = 0; i < charQty; i++) {
+      results += characters[Math.floor(Math.random() * characters.length)];
+    }
+    
   } else {
     window.alert("That is an invalid entry. Select a length between 8 and 128");
     return generatePassword();
